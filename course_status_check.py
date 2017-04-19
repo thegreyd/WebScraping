@@ -34,16 +34,15 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-binary = FirefoxBinary("/usr/bin/firefox-trunk")
-driver = webdriver.Firefox(firefox_binary=binary)
-
 url="https://www.acs.ncsu.edu/php/coursecat/"
-#driver = webdriver.Firefox()
-#driver = webdriver.Chrome()
+
+# include path to chromedriver 
+# see https://sites.google.com/a/chromium.org/chromedriver/
+driver = webdriver.Chrome('/home/sid/softwares/chromedriver') 
+
 course_subject = "CSC"
 course_career_value = "Graduate"
 limit_to_500_courses = True
@@ -120,8 +119,8 @@ def dropdown_searchsection():
 def search_sequence():
     driver.get(url)
     fill_subject()
-    if limit_to_oncampus:
-        select_campusonly()
+    #if limit_to_oncampus:
+    #    select_campusonly()
     select_coursecareer()
     press_searchbutton()
 
